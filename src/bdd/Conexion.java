@@ -11,16 +11,13 @@ import java.sql.SQLException;
  */
 public class Conexion {
     public Connection objetenerConexion(){
-        
         Connection conexion = null;
         
-        try {
-            
+        try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/comiclords", "root","");
-            
             System.out.println("Conexion exitosa");
-        } catch (ClassNotFoundException | SQLException e) {
+        }catch(ClassNotFoundException | SQLException e) {
             System.out.println("Error al conectar : "+ e.getMessage());
         }
         return conexion;
