@@ -9,6 +9,8 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
+import modelo.Manga;
+import controlador.RegistroManga;
 
 /**
  *
@@ -59,14 +61,14 @@ public class Agregar extends javax.swing.JFrame {
         listDemografia = new javax.swing.JList<>();
         jLabel10 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        btnSalirAgregar = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         btnAgregar = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
 
@@ -179,26 +181,26 @@ public class Agregar extends javax.swing.JFrame {
         });
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnSalirAgregar.setFont(new java.awt.Font("Eras Demi ITC", 1, 18)); // NOI18N
-        btnSalirAgregar.setText("X");
-        btnSalirAgregar.setBorder(null);
-        btnSalirAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnSalir.setFont(new java.awt.Font("Eras Demi ITC", 1, 18)); // NOI18N
+        btnSalir.setText("X");
+        btnSalir.setBorder(null);
+        btnSalir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnSalirAgregarMouseClicked(evt);
+                btnSalirMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnSalirAgregarMouseEntered(evt);
+                btnSalirMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnSalirAgregarMouseExited(evt);
+                btnSalirMouseExited(evt);
             }
         });
-        btnSalirAgregar.addActionListener(new java.awt.event.ActionListener() {
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalirAgregarActionPerformed(evt);
+                btnSalirActionPerformed(evt);
             }
         });
-        jPanel3.add(btnSalirAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 0, 30, 30));
+        jPanel3.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 0, 30, 30));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 30));
 
@@ -223,7 +225,7 @@ public class Agregar extends javax.swing.JFrame {
                 btnAgregarActionPerformed(evt);
             }
         });
-        jPanel2.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 410, -1, -1));
+        jPanel2.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 410, 130, 30));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/pngwing.com.png"))); // NOI18N
         jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 280, 380));
@@ -309,6 +311,17 @@ public class Agregar extends javax.swing.JFrame {
             this.txtMesesSerial.requestFocus();
             return;
         }
+        demografia = this.listDemografia.getSelectedValue();
+        
+        estado = this.chkEstado.isSelected();
+        
+        Manga newManga = new Manga(0, precio, stock, nroTomo, mesesSerial, nombre, autor, editorial, demografia, estado);
+        RegistroManga reg = new RegistroManga();
+        if (reg.agregarManga(newManga)) {
+            JOptionPane.showMessageDialog(this, "Manga agregado exitosamente", "Información", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            JOptionPane.showMessageDialog(this, "Error al agregar el manga", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void jPanel3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseDragged
@@ -322,21 +335,21 @@ public class Agregar extends javax.swing.JFrame {
         yMouse = evt.getY();
     }//GEN-LAST:event_jPanel3MousePressed
 
-    private void btnSalirAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirAgregarMouseClicked
+    private void btnSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseClicked
         System.exit(0);
-    }//GEN-LAST:event_btnSalirAgregarMouseClicked
+    }//GEN-LAST:event_btnSalirMouseClicked
 
-    private void btnSalirAgregarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirAgregarMouseEntered
-        btnSalirAgregar.setBackground(Color.red);
-    }//GEN-LAST:event_btnSalirAgregarMouseEntered
+    private void btnSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseEntered
+        btnSalir.setBackground(Color.red);
+    }//GEN-LAST:event_btnSalirMouseEntered
 
-    private void btnSalirAgregarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirAgregarMouseExited
-        btnSalirAgregar.setBackground(Color.white);
-    }//GEN-LAST:event_btnSalirAgregarMouseExited
+    private void btnSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseExited
+        btnSalir.setBackground(Color.white);
+    }//GEN-LAST:event_btnSalirMouseExited
 
-    private void btnSalirAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirAgregarActionPerformed
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalirAgregarActionPerformed
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnAgregarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseEntered
         btnAgregar.setBackground(Color.gray);
@@ -385,7 +398,7 @@ public class Agregar extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnSalirAgregar;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JCheckBox chkEstado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
