@@ -22,7 +22,14 @@ public class Listar extends javax.swing.JFrame {
     
     public Listar() {
         initComponents();
+        setIconImage(getIconImage());
     }
+    
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/logo.png"));
+        return retValue;
+    } 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -40,12 +47,19 @@ public class Listar extends javax.swing.JFrame {
         btnBuscar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         txtFiltro = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        btnEliminar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btnSalir = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
+        txtEliminar = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -81,10 +95,10 @@ public class Listar extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblVerStock);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 600, 300));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 600, 250));
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 290, -1));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, 290, -1));
 
         btnBuscar.setBackground(new java.awt.Color(140, 1, 1));
         btnBuscar.setFont(new java.awt.Font("Eras Demi ITC", 1, 18)); // NOI18N
@@ -98,20 +112,45 @@ public class Listar extends javax.swing.JFrame {
                 btnBuscarMouseExited(evt);
             }
         });
-        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 410, 130, 30));
+        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 50, 130, 30));
 
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel3.setFont(new java.awt.Font("Eras Bold ITC", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Eras Bold ITC", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("FILTRAR SEGÚN: ");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, -1, -1));
+        jLabel3.setText("ELIMINAR PRODUCTO:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, -1, -1));
 
         txtFiltro.setBackground(new java.awt.Color(0, 0, 0));
         txtFiltro.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtFiltro.setForeground(new java.awt.Color(204, 204, 204));
         txtFiltro.setText("Ingrese nombre, autor o demografía");
         txtFiltro.setBorder(null);
-        jPanel1.add(txtFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 290, 30));
+        jPanel1.add(txtFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 290, 30));
+
+        jLabel4.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel4.setFont(new java.awt.Font("Eras Bold ITC", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("FILTRAR SEGÚN: ");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, -1, -1));
+
+        btnEliminar.setBackground(new java.awt.Color(140, 1, 1));
+        btnEliminar.setFont(new java.awt.Font("Eras Demi ITC", 1, 18)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setText("ELIMINAR");
+        btnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEliminarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEliminarMouseExited(evt);
+            }
+        });
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 380, 130, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Union (1).png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -155,7 +194,35 @@ public class Listar extends javax.swing.JFrame {
         });
         jPanel2.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 0, 30, 30));
 
+        btnVolver.setFont(new java.awt.Font("Eras Demi ITC", 1, 14)); // NOI18N
+        btnVolver.setText("VOLVER");
+        btnVolver.setBorder(null);
+        btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnVolverMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnVolverMouseExited(evt);
+            }
+        });
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 0, 100, 30));
+
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 30));
+
+        jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 420, 290, -1));
+
+        txtEliminar.setBackground(new java.awt.Color(0, 0, 0));
+        txtEliminar.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        txtEliminar.setForeground(new java.awt.Color(204, 204, 204));
+        txtEliminar.setText("Ingrese nombre, autor o demografía");
+        txtEliminar.setBorder(null);
+        jPanel1.add(txtEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 380, 290, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -205,12 +272,50 @@ public class Listar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirMouseEntered
 
     private void btnSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseExited
-        btnSalir.setBackground(Color.white);
+        btnSalir.setBackground(Color.gray);
     }//GEN-LAST:event_btnSalirMouseExited
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnEliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseEntered
+        btnEliminar.setBackground(Color.gray);
+        btnEliminar.setForeground(Color.black);
+    }//GEN-LAST:event_btnEliminarMouseEntered
+
+    private void btnEliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseExited
+        btnEliminar.setBackground(new Color(140,1,1));
+        btnEliminar.setForeground(Color.white);
+    }//GEN-LAST:event_btnEliminarMouseExited
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        int codigo = Integer.parseInt(this.txtEliminar.getText());
+
+        RegistroManga reg = new RegistroManga();
+
+        if (reg.eliminarManga(codigo)){
+            JOptionPane.showMessageDialog(null, "Manga eliminado con éxito", "Eliminar Manga", 1);
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Manga No eliminado", "Eliminar Manga", 0);
+
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnVolverMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseEntered
+        btnVolver.setBackground(Color.black);
+        btnVolver.setForeground(Color.white);
+    }//GEN-LAST:event_btnVolverMouseEntered
+
+    private void btnVolverMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseExited
+        btnVolver.setBackground(Color.gray);
+        btnVolver.setForeground(Color.black);
+    }//GEN-LAST:event_btnVolverMouseExited
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_btnVolverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -249,15 +354,20 @@ public class Listar extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnSalir;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable tblVerStock;
+    private javax.swing.JTextField txtEliminar;
     private javax.swing.JTextField txtFiltro;
     // End of variables declaration//GEN-END:variables
 }

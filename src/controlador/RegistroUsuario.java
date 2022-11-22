@@ -52,7 +52,7 @@ public class RegistroUsuario {
 
         for (Usuario us : user){
 
-            if(newUser.getUsuario().equalsIgnoreCase(us.getContrasenna())&& newUser.getContrasenna().equalsIgnoreCase(us.getContrasenna())){
+            if(newUser.getUsuario().equalsIgnoreCase(us.getUsuario())&& newUser.getContrasenna().equalsIgnoreCase(us.getContrasenna())){
                 System.out.println("Inicio de sesion exitoso");
                 return true;
             }

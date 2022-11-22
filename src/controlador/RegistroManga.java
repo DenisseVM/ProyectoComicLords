@@ -51,7 +51,7 @@ public class RegistroManga {
         }
     }
 
-    public boolean eliminarManga(String nombre) {
+    public boolean eliminarManga(int codigo) {
 
         boolean flag = false;
         try {
@@ -59,9 +59,9 @@ public class RegistroManga {
             Conexion con = new Conexion();
             Connection cnx = con.objetenerConexion();
 
-            String query = "DELETE FROM producto WHERE nombre =?";
+            String query = "DELETE FROM producto WHERE codigo =?";
             PreparedStatement stmt = cnx.prepareStatement(query);
-            stmt.setString(1, nombre);
+            stmt.setInt(1, codigo);
 
             int preg = JOptionPane.showConfirmDialog(null, "¿Esta seguro de que desea eliminar esto?", "Eliminar Producto", 1);
 

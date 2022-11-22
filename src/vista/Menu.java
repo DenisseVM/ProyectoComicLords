@@ -14,12 +14,17 @@ import java.awt.Toolkit;
  * @author denisse
  */
 public class Menu extends javax.swing.JFrame {
+    //para que no me abra múltiples ventanas
+    Admin admin = new Admin();
+    Listar listar = new Listar();
+    Modificar modificar = new Modificar();
+    Agregar agregar = new Agregar();
     
     int xMouse, yMouse;
     
     public Menu() {
         initComponents();
-        this.setLocationRelativeTo(null);
+        setIconImage(getIconImage());
     }
 
     @Override
@@ -36,13 +41,12 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuItem4 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         btnSalirAgregar = new javax.swing.JButton();
+        btnLogOut = new javax.swing.JButton();
         btnAgregarProducto1 = new javax.swing.JButton();
-        btnEliminarProducto = new javax.swing.JButton();
         btnVerStock = new javax.swing.JButton();
         btnModificarProducto = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
@@ -50,8 +54,6 @@ public class Menu extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-
-        jMenuItem4.setText("jMenuItem4");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -95,6 +97,24 @@ public class Menu extends javax.swing.JFrame {
         });
         jPanel3.add(btnSalirAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 0, 30, 30));
 
+        btnLogOut.setFont(new java.awt.Font("Eras Demi ITC", 1, 14)); // NOI18N
+        btnLogOut.setText("LOG OUT");
+        btnLogOut.setBorder(null);
+        btnLogOut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnLogOutMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnLogOutMouseExited(evt);
+            }
+        });
+        btnLogOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogOutActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 0, 100, 30));
+
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 30));
 
         btnAgregarProducto1.setFont(new java.awt.Font("Eras Bold ITC", 0, 14)); // NOI18N
@@ -107,19 +127,9 @@ public class Menu extends javax.swing.JFrame {
         });
         jPanel2.add(btnAgregarProducto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 200, 50));
 
-        btnEliminarProducto.setFont(new java.awt.Font("Eras Bold ITC", 0, 14)); // NOI18N
-        btnEliminarProducto.setForeground(new java.awt.Color(0, 0, 0));
-        btnEliminarProducto.setText("ELIMINAR PRODUCTO");
-        btnEliminarProducto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarProductoActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnEliminarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, 200, 50));
-
         btnVerStock.setFont(new java.awt.Font("Eras Bold ITC", 0, 14)); // NOI18N
         btnVerStock.setForeground(new java.awt.Color(0, 0, 0));
-        btnVerStock.setLabel("VER STOCK");
+        btnVerStock.setText("VER STOCK / ELIMINAR");
         btnVerStock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVerStockActionPerformed(evt);
@@ -135,7 +145,7 @@ public class Menu extends javax.swing.JFrame {
                 btnModificarProductoActionPerformed(evt);
             }
         });
-        jPanel2.add(btnModificarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 200, 50));
+        jPanel2.add(btnModificarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 200, 200, 50));
 
         jPanel4.setBackground(new java.awt.Color(0, 0, 0));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -179,7 +189,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirAgregarMouseEntered
 
     private void btnSalirAgregarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirAgregarMouseExited
-        btnSalirAgregar.setBackground(Color.white);
+        btnSalirAgregar.setBackground(Color.gray);
     }//GEN-LAST:event_btnSalirAgregarMouseExited
 
     private void btnSalirAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirAgregarActionPerformed
@@ -198,24 +208,31 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel3MouseDragged
 
     private void btnAgregarProducto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProducto1ActionPerformed
-        Agregar agregar = new Agregar();
         agregar.setVisible(true);
     }//GEN-LAST:event_btnAgregarProducto1ActionPerformed
 
     private void btnModificarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarProductoActionPerformed
-        Modificar modificar = new Modificar();
         modificar.setVisible(true);
     }//GEN-LAST:event_btnModificarProductoActionPerformed
 
-    private void btnEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProductoActionPerformed
-        Eliminar eliminar = new Eliminar();
-        eliminar.setVisible(true);
-    }//GEN-LAST:event_btnEliminarProductoActionPerformed
-
     private void btnVerStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerStockActionPerformed
-        Listar listar = new Listar();
         listar.setVisible(true);
     }//GEN-LAST:event_btnVerStockActionPerformed
+
+    private void btnLogOutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogOutMouseEntered
+        btnLogOut.setBackground(Color.black);
+        btnLogOut.setForeground(Color.white);
+    }//GEN-LAST:event_btnLogOutMouseEntered
+
+    private void btnLogOutMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogOutMouseExited
+        btnLogOut.setBackground(Color.gray);
+        btnLogOut.setForeground(Color.black);
+    }//GEN-LAST:event_btnLogOutMouseExited
+
+    private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
+        this.setVisible(false);
+        admin.setVisible(true);
+    }//GEN-LAST:event_btnLogOutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -254,7 +271,7 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarProducto1;
-    private javax.swing.JButton btnEliminarProducto;
+    private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnModificarProducto;
     private javax.swing.JButton btnSalirAgregar;
     private javax.swing.JButton btnVerStock;
@@ -262,7 +279,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

@@ -22,7 +22,7 @@ public class Agregar extends javax.swing.JFrame {
     
     public Agregar() {
         initComponents();
-        this.setLocationRelativeTo(null);
+        setIconImage(getIconImage());
     }
     
     @Override
@@ -62,7 +62,9 @@ public class Agregar extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         btnSalir = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        btnLimpiar = new javax.swing.JButton();
         btnAgregar = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -202,10 +204,48 @@ public class Agregar extends javax.swing.JFrame {
         });
         jPanel3.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 0, 30, 30));
 
+        btnVolver.setFont(new java.awt.Font("Eras Demi ITC", 1, 14)); // NOI18N
+        btnVolver.setText("VOLVER");
+        btnVolver.setBorder(null);
+        btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnVolverMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnVolverMouseExited(evt);
+            }
+        });
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 0, 100, 30));
+
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 30));
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnLimpiar.setBackground(new java.awt.Color(140, 1, 1));
+        btnLimpiar.setFont(new java.awt.Font("Eras Bold ITC", 0, 18)); // NOI18N
+        btnLimpiar.setForeground(new java.awt.Color(255, 255, 255));
+        btnLimpiar.setText("LIMPIAR");
+        btnLimpiar.setBorder(null);
+        btnLimpiar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnLimpiarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnLimpiarMouseExited(evt);
+            }
+        });
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, 120, 30));
 
         btnAgregar.setBackground(new java.awt.Color(140, 1, 1));
         btnAgregar.setFont(new java.awt.Font("Eras Bold ITC", 0, 18)); // NOI18N
@@ -225,7 +265,7 @@ public class Agregar extends javax.swing.JFrame {
                 btnAgregarActionPerformed(evt);
             }
         });
-        jPanel2.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 410, 130, 30));
+        jPanel2.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 410, 120, 30));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/pngwing.com.png"))); // NOI18N
         jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 280, 380));
@@ -344,7 +384,7 @@ public class Agregar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirMouseEntered
 
     private void btnSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseExited
-        btnSalir.setBackground(Color.white);
+        btnSalir.setBackground(Color.gray);
     }//GEN-LAST:event_btnSalirMouseExited
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -360,6 +400,41 @@ public class Agregar extends javax.swing.JFrame {
         btnAgregar.setBackground(new Color(140,1,1));
         btnAgregar.setForeground(Color.white);
     }//GEN-LAST:event_btnAgregarMouseExited
+
+    private void btnVolverMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseEntered
+        btnVolver.setBackground(Color.black);
+        btnVolver.setForeground(Color.white);
+    }//GEN-LAST:event_btnVolverMouseEntered
+
+    private void btnVolverMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseExited
+        btnVolver.setBackground(Color.gray);
+        btnVolver.setForeground(Color.black);
+    }//GEN-LAST:event_btnVolverMouseExited
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void btnLimpiarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarMouseEntered
+        btnLimpiar.setBackground(Color.gray);
+        btnLimpiar.setForeground(Color.black);
+    }//GEN-LAST:event_btnLimpiarMouseEntered
+
+    private void btnLimpiarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarMouseExited
+        btnLimpiar.setBackground(new Color(140,1,1));
+        btnLimpiar.setForeground(Color.white);
+    }//GEN-LAST:event_btnLimpiarMouseExited
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        txtNombre.setText("");
+        txtAutor.setText("");
+        txtEditorial.setText("");
+        txtPrecio.setText("");
+        txtStock.setText("");
+        txtMesesSerial.setText("");
+        txtNroTomo.setText("");
+        
+    }//GEN-LAST:event_btnLimpiarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -398,7 +473,9 @@ public class Agregar extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnSalir;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JCheckBox chkEstado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

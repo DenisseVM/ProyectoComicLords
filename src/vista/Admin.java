@@ -3,6 +3,9 @@ package vista;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
+import modelo.Usuario;
+import controlador.RegistroUsuario;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -193,16 +196,21 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
-        
         String usuario = this.txtUsuario.getText();
-        String pass = this.jPass.getText();
-        
-        if (usuario.equalsIgnoreCase("admin") && pass.equalsIgnoreCase("pass")){
+        String contrasenna = this.jPass.getText();
+
+        Usuario newUser = new Usuario(0,usuario, contrasenna);
+        RegistroUsuario rgu = new RegistroUsuario();
+
+        if (rgu.validarLogin(newUser)) {
+            JOptionPane.showMessageDialog(null, "Ingreso exitosamente", "Ingresar usuario", 1);
             new Menu().setVisible(true);
             dispose();
-        }else{
+        } else {
+            JOptionPane.showMessageDialog(null, "Datos Incorrectos", "Ingresar usuario", 0);
             this.lblAdvertencia.setForeground(Color.RED);
             this.lblAdvertencia.setText("Datos incorrectos, por favor reintente.");
+
         }
     }//GEN-LAST:event_btnInicioActionPerformed
 
@@ -246,7 +254,7 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirMouseEntered
 
     private void btnSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseExited
-        btnSalir.setBackground(Color.white);
+        btnSalir.setBackground(Color.gray);
     }//GEN-LAST:event_btnSalirMouseExited
 
     /**
