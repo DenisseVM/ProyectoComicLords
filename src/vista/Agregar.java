@@ -318,7 +318,7 @@ public class Agregar extends javax.swing.JFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
 
-        int codigo, precio, stock, nroTomo, mesesSerial;
+        String codigo, precio, stock, nroTomo, mesesSerial;
         String nombre, autor, editorial, demografia;
         boolean estado;
 
@@ -330,48 +330,44 @@ public class Agregar extends javax.swing.JFrame {
             return;
         }
 
-        autor = this.txtAutor.getText();
-        if (autor.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Ingrese Autor", "VALIDACIÓN", JOptionPane.WARNING_MESSAGE);
-            this.txtAutor.requestFocus();
-            return;
-        }
-
         editorial = this.txtEditorial.getText();
         if (editorial.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Ingrese Editorial", "VALIDACIÓN", JOptionPane.WARNING_MESSAGE);
             this.txtEditorial.requestFocus();
             return;
         }
-
-        try {
-            precio = Integer.parseInt(this.txtPrecio.getText());
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Precio debe ser numérico", "VALIDACIÓN", JOptionPane.WARNING_MESSAGE);
-            this.txtPrecio.requestFocus();
+        
+        autor = this.txtAutor.getText();
+        if (autor.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese Autor", "VALIDACIÓN", JOptionPane.WARNING_MESSAGE);
+            this.txtAutor.requestFocus();
             return;
         }
-
-        try {
-            stock = Integer.parseInt(this.txtStock.getText());
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Stock debe ser numérico", "VALIDACIÓN", JOptionPane.WARNING_MESSAGE);
-            this.txtStock.requestFocus();
-            return;
-        }
-
-        try {
-            nroTomo = Integer.parseInt(this.txtNroTomo.getText());
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Ingrese solo el número del tomo", "VALIDACIÓN", JOptionPane.WARNING_MESSAGE);
+        
+        nroTomo = this.txtNroTomo.getText();
+        if (nroTomo.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese número de tomo", "VALIDACIÓN", JOptionPane.WARNING_MESSAGE);
             this.txtNroTomo.requestFocus();
             return;
         }
-
-        try {
-            mesesSerial = Integer.parseInt(this.txtMesesSerial.getText());
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Ingrese cantidad de meses en números", "VALIDACIÓN", JOptionPane.WARNING_MESSAGE);
+        
+        stock = this.txtStock.getText();
+        if (stock.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese stock", "VALIDACIÓN", JOptionPane.WARNING_MESSAGE);
+            this.txtStock.requestFocus();
+            return;
+        }
+        
+        precio = this.txtPrecio.getText();
+        if (precio.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese precio", "VALIDACIÓN", JOptionPane.WARNING_MESSAGE);
+            this.txtPrecio.requestFocus();
+            return;
+        }
+        
+        mesesSerial = this.txtMesesSerial.getText();
+        if (mesesSerial.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese meses de serialización", "VALIDACIÓN", JOptionPane.WARNING_MESSAGE);
             this.txtMesesSerial.requestFocus();
             return;
         }
@@ -380,11 +376,20 @@ public class Agregar extends javax.swing.JFrame {
 
         estado = this.chkEstado.isSelected();
 
-        Manga newManga = new Manga(0, precio, stock, nroTomo, mesesSerial, nombre, autor, editorial, demografia, estado);
+        Manga newManga = new Manga(0, Integer.parseInt(precio), Integer.parseInt(stock), Integer.parseInt(nroTomo), Integer.parseInt(mesesSerial), nombre, autor, editorial, demografia, estado);
         RegistroManga reg = new RegistroManga();
 
         if (reg.agregarManga(newManga)) {
             JOptionPane.showMessageDialog(this, "Manga agregado exitosamente", "INFORMACIÓN", JOptionPane.INFORMATION_MESSAGE);
+            txtNombre.setText("");
+            txtAutor.setText("");
+            txtEditorial.setText("");
+            txtPrecio.setText("");
+            txtStock.setText("");
+            txtMesesSerial.setText("");
+            txtNroTomo.setText("");
+            cboDemografia.setSelectedItem("Kodomo");
+            chkEstado.setSelected(false);
         } else {
             JOptionPane.showMessageDialog(this, "Error al agregar el manga", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
@@ -460,22 +465,12 @@ public class Agregar extends javax.swing.JFrame {
         txtMesesSerial.setText("");
         txtNroTomo.setText("");
         cboDemografia.setSelectedItem("Kodomo");
+        chkEstado.setSelected(false);
 
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-        int key = evt.getKeyChar();
-
-        boolean mayusculas = key >= 65 && key <= 90;
-        boolean minusculas = key >= 97 && key <= 122;
-        boolean espacio = key == 32;
-
-        if (!(minusculas || mayusculas || espacio)) {
-            evt.consume();
-        }
-        if (txtNombre.getText().length() >= 20) {
-            evt.consume();
-        }
+        
     }//GEN-LAST:event_txtNombreKeyTyped
 
     private void txtEditorialKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEditorialKeyTyped

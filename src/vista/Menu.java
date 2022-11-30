@@ -12,7 +12,7 @@ public class Menu extends javax.swing.JFrame {
     //para que no me abra múltiples ventanas
     Admin admin = new Admin();
     Listar listar = new Listar();
-    Modificar modificar = new Modificar();
+    ModificarListar modificarListar = new ModificarListar();
     Agregar agregar = new Agregar();
     
     int xMouse, yMouse;
@@ -208,7 +208,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarProducto1ActionPerformed
 
     private void btnModificarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarProductoActionPerformed
-        modificar.setVisible(true);
+        modificarListar.setVisible(true);
     }//GEN-LAST:event_btnModificarProductoActionPerformed
 
     private void btnVerStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerStockActionPerformed

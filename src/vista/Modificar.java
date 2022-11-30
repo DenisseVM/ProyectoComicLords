@@ -15,10 +15,23 @@ public class Modificar extends javax.swing.JFrame {
 
     int xMouse, yMouse;
     
-    public Modificar() {
+    public Modificar(Manga manga) {
         initComponents();
         setIconImage(getIconImage());
         this.setLocationRelativeTo(null);
+        
+        this.txtCodigo.setText(manga.getCodigo()+"");
+        this.txtCodigo.setEnabled(false);
+        txtPrecio.requestFocus();
+        this.txtPrecio.setText(manga.getPrecio()+"");
+        this.txtStock.setText(manga.getStock()+"");
+        this.txtNombre.setText(manga.getNombre());
+        this.txtEditorial.setText(manga.getEditorial());
+        this.txtAutor.setText(manga.getAutor());
+        this.txtMesesSerial.setText(manga.getMesesSerial()+"");
+        this.txtNroTomo.setText(manga.getNroTomo()+"");
+        this.chkEstado.setSelected(manga.isEstado());
+        this.cboDemografia.setSelectedItem(manga.getDemografia()+"");
     }
     
     @Override
@@ -64,6 +77,7 @@ public class Modificar extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        txtCodigo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -300,6 +314,9 @@ public class Modificar extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Union (1).png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
+        txtCodigo.setText("jLabel13");
+        jPanel1.add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 40, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -315,18 +332,7 @@ public class Modificar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-        int key = evt.getKeyChar();
-
-        boolean mayusculas = key >= 65 && key <= 90;
-        boolean minusculas = key >= 97 && key <= 122;
-        boolean espacio = key == 32;
-
-        if (!(minusculas || mayusculas || espacio)) {
-            evt.consume();
-        }
-        if (txtNombre.getText().length() >= 20) {
-            evt.consume();
-        }
+        
     }//GEN-LAST:event_txtNombreKeyTyped
 
     private void txtEditorialKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEditorialKeyTyped
@@ -387,7 +393,7 @@ public class Modificar extends javax.swing.JFrame {
         if (!numeros) {
             evt.consume();
         }
-        if (txtPrecio.getText().length() >= 3) {
+        if (txtPrecio.getText().length() >= 6) {
             evt.consume();
         }
         if (txtPrecio.getText().trim().length() == 10) {
@@ -501,7 +507,7 @@ public class Modificar extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
-        int codigo, precio, stock, nroTomo, mesesSerial;
+        String codigo, precio, stock, nroTomo, mesesSerial;
         String nombre, autor, editorial, demografia;
         boolean estado;
 
@@ -513,48 +519,44 @@ public class Modificar extends javax.swing.JFrame {
             return;
         }
 
-        autor = this.txtAutor.getText();
-        if (autor.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Ingrese Autor", "VALIDACIÓN", JOptionPane.WARNING_MESSAGE);
-            this.txtAutor.requestFocus();
-            return;
-        }
-
         editorial = this.txtEditorial.getText();
         if (editorial.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Ingrese Editorial", "VALIDACIÓN", JOptionPane.WARNING_MESSAGE);
             this.txtEditorial.requestFocus();
             return;
         }
-
-        try {
-            precio = Integer.parseInt(this.txtPrecio.getText());
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Precio debe ser numérico", "VALIDACIÓN", JOptionPane.WARNING_MESSAGE);
-            this.txtPrecio.requestFocus();
+        
+        autor = this.txtAutor.getText();
+        if (autor.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese Autor", "VALIDACIÓN", JOptionPane.WARNING_MESSAGE);
+            this.txtAutor.requestFocus();
             return;
         }
-
-        try {
-            stock = Integer.parseInt(this.txtStock.getText());
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Stock debe ser numérico", "VALIDACIÓN", JOptionPane.WARNING_MESSAGE);
-            this.txtStock.requestFocus();
-            return;
-        }
-
-        try {
-            nroTomo = Integer.parseInt(this.txtNroTomo.getText());
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Ingrese solo el número del tomo", "VALIDACIÓN", JOptionPane.WARNING_MESSAGE);
+        
+        nroTomo = this.txtNroTomo.getText();
+        if (nroTomo.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese número de tomo", "VALIDACIÓN", JOptionPane.WARNING_MESSAGE);
             this.txtNroTomo.requestFocus();
             return;
         }
-
-        try {
-            mesesSerial = Integer.parseInt(this.txtMesesSerial.getText());
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Ingrese cantidad de meses en números", "VALIDACIÓN", JOptionPane.WARNING_MESSAGE);
+        
+        stock = this.txtStock.getText();
+        if (stock.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese stock", "VALIDACIÓN", JOptionPane.WARNING_MESSAGE);
+            this.txtStock.requestFocus();
+            return;
+        }
+        
+        precio = this.txtPrecio.getText();
+        if (precio.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese precio", "VALIDACIÓN", JOptionPane.WARNING_MESSAGE);
+            this.txtPrecio.requestFocus();
+            return;
+        }
+        
+        mesesSerial = this.txtMesesSerial.getText();
+        if (mesesSerial.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese meses de serialización", "VALIDACIÓN", JOptionPane.WARNING_MESSAGE);
             this.txtMesesSerial.requestFocus();
             return;
         }
@@ -562,6 +564,15 @@ public class Modificar extends javax.swing.JFrame {
         demografia = this.cboDemografia.getSelectedItem().toString();
 
         estado = this.chkEstado.isSelected();
+        
+        Manga newManga = new Manga(Integer.parseInt(this.txtCodigo.getText()), Integer.parseInt(precio), Integer.parseInt(stock), Integer.parseInt(nroTomo), Integer.parseInt(mesesSerial), nombre, autor, editorial, demografia, estado);
+        RegistroManga reg = new RegistroManga();
+        
+        if (reg.actualizarManga(newManga)) {
+            JOptionPane.showMessageDialog(this, "Manga actualizado exitosamente", "INFORMACIÓN", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al actualizar el manga", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     /**
@@ -622,6 +633,7 @@ public class Modificar extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField txtAutor;
+    private javax.swing.JLabel txtCodigo;
     private javax.swing.JTextField txtEditorial;
     private javax.swing.JTextField txtMesesSerial;
     private javax.swing.JTextField txtNombre;

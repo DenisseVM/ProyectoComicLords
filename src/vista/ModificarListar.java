@@ -1,30 +1,36 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package vista;
 
+import controlador.RegistroManga;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
-import javax.swing.JOptionPane;
-import modelo.Manga;
-import controlador.RegistroManga;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modelo.Manga;
 
 /**
  *
  * @author FabianDuran DenisseVenegas
  */
-public class Listar extends javax.swing.JFrame {
-
-    RegistroManga reg = new RegistroManga();
-
+public class ModificarListar extends javax.swing.JFrame {
+    
     int xMouse, yMouse;
 
-    public Listar() {
+    /**
+     * Creates new form ModificarListar
+     */
+    public ModificarListar() {
         initComponents();
         setIconImage(getIconImage());
         this.setLocationRelativeTo(null);
     }
-
+    
     @Override
     public Image getIconImage() {
         Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/logo.png"));
@@ -43,23 +49,15 @@ public class Listar extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblVerStock = new javax.swing.JTable();
-        jSeparator1 = new javax.swing.JSeparator();
-        btnBuscar = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        txtFiltro = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        btnEliminar = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
+        btnMostrar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btnSalir = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
-        jSeparator2 = new javax.swing.JSeparator();
-        txtEliminar = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
-        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -95,72 +93,45 @@ public class Listar extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblVerStock);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 700, 250));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 700, 250));
 
-        jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, 290, -1));
-
-        btnBuscar.setBackground(new java.awt.Color(140, 1, 1));
-        btnBuscar.setFont(new java.awt.Font("Eras Demi ITC", 1, 18)); // NOI18N
-        btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
-        btnBuscar.setText("BUSCAR");
-        btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnModificar.setBackground(new java.awt.Color(140, 1, 1));
+        btnModificar.setFont(new java.awt.Font("Eras Demi ITC", 1, 18)); // NOI18N
+        btnModificar.setForeground(new java.awt.Color(255, 255, 255));
+        btnModificar.setText("MODIFICAR");
+        btnModificar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnBuscarMouseEntered(evt);
+                btnModificarMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnBuscarMouseExited(evt);
+                btnModificarMouseExited(evt);
             }
         });
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
+                btnModificarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 50, 130, 30));
+        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 340, 160, 30));
 
-        jLabel3.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel3.setFont(new java.awt.Font("Eras Bold ITC", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("ELIMINAR PRODUCTO:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, -1, -1));
-
-        txtFiltro.setBackground(new java.awt.Color(0, 0, 0));
-        txtFiltro.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        txtFiltro.setForeground(new java.awt.Color(204, 204, 204));
-        txtFiltro.setText("Ingrese nombre");
-        txtFiltro.setBorder(null);
-        txtFiltro.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtFiltroMousePressed(evt);
-            }
-        });
-        jPanel1.add(txtFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 290, 30));
-
-        jLabel4.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel4.setFont(new java.awt.Font("Eras Bold ITC", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("FILTRAR SEGÚN: ");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, -1, -1));
-
-        btnEliminar.setBackground(new java.awt.Color(140, 1, 1));
-        btnEliminar.setFont(new java.awt.Font("Eras Demi ITC", 1, 18)); // NOI18N
-        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
-        btnEliminar.setText("ELIMINAR");
-        btnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnMostrar.setBackground(new java.awt.Color(140, 1, 1));
+        btnMostrar.setFont(new java.awt.Font("Eras Demi ITC", 1, 18)); // NOI18N
+        btnMostrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnMostrar.setText("MOSTRAR MANGAS");
+        btnMostrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnEliminarMouseEntered(evt);
+                btnMostrarMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnEliminarMouseExited(evt);
+                btnMostrarMouseExited(evt);
             }
         });
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+        btnMostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
+                btnMostrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 380, 130, 30));
+        jPanel1.add(btnMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 340, 220, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Union (1).png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -224,26 +195,6 @@ public class Listar extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 30));
 
-        jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 420, 290, -1));
-
-        txtEliminar.setBackground(new java.awt.Color(0, 0, 0));
-        txtEliminar.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        txtEliminar.setForeground(new java.awt.Color(204, 204, 204));
-        txtEliminar.setText("Ingrese código del producto");
-        txtEliminar.setBorder(null);
-        txtEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtEliminarMousePressed(evt);
-            }
-        });
-        txtEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEliminarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 380, 290, 30));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -258,30 +209,40 @@ public class Listar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jPanel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MousePressed
-        xMouse = evt.getX();
-        yMouse = evt.getY();
-    }//GEN-LAST:event_jPanel2MousePressed
+    private void btnModificarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarMouseEntered
+        btnModificar.setBackground(Color.gray);
+        btnModificar.setForeground(Color.black);
+    }//GEN-LAST:event_btnModificarMouseEntered
 
-    private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPanel2MouseClicked
+    private void btnModificarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarMouseExited
+        btnModificar.setBackground(new Color(140,1,1));
+        btnModificar.setForeground(Color.white);
+    }//GEN-LAST:event_btnModificarMouseExited
 
-    private void jPanel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseDragged
-        int x = evt.getXOnScreen();
-        int y = evt.getYOnScreen();
-        this.setLocation(x - xMouse, y - yMouse);
-    }//GEN-LAST:event_jPanel2MouseDragged
-
-    private void btnBuscarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseEntered
-        btnBuscar.setBackground(Color.gray);
-        btnBuscar.setForeground(Color.black);
-    }//GEN-LAST:event_btnBuscarMouseEntered
-
-    private void btnBuscarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseExited
-        btnBuscar.setBackground(new Color(140, 1, 1));
-        btnBuscar.setForeground(Color.white);
-    }//GEN-LAST:event_btnBuscarMouseExited
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        int fila = this.tblVerStock.getSelectedRow();
+        if (fila < 0) {
+            JOptionPane.showMessageDialog(this, "Debe Seleccionar una Fila", "VALIDACIÓN", JOptionPane.WARNING_MESSAGE);
+            this.tblVerStock.requestFocus();
+            return;
+        } else {
+            Manga manga = new Manga();
+            
+            manga.setCodigo(Integer.parseInt(this.tblVerStock.getValueAt(fila, 0).toString()));
+            manga.setPrecio(Integer.parseInt(this.tblVerStock.getValueAt(fila, 1).toString()));
+            manga.setStock(Integer.parseInt(this.tblVerStock.getValueAt(fila, 2).toString()));
+            manga.setNombre((String) this.tblVerStock.getValueAt(fila, 3));
+            manga.setEditorial((String) this.tblVerStock.getValueAt(fila, 4));
+            manga.setAutor((String) this.tblVerStock.getValueAt(fila, 5));
+            manga.setMesesSerial((int) this.tblVerStock.getValueAt(fila, 6));
+            manga.setNroTomo((int) this.tblVerStock.getValueAt(fila, 7));
+            manga.setEstado((boolean) this.tblVerStock.getValueAt(fila, 8));
+            manga.setDemografia((String) this.tblVerStock.getValueAt(fila, 9));
+            Modificar modificar = new Modificar(manga);
+            modificar.setVisible(true);
+            dispose();
+        }
+    }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseClicked
         System.exit(0);
@@ -299,39 +260,6 @@ public class Listar extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    private void btnEliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseEntered
-        btnEliminar.setBackground(Color.gray);
-        btnEliminar.setForeground(Color.black);
-    }//GEN-LAST:event_btnEliminarMouseEntered
-
-    private void btnEliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseExited
-        btnEliminar.setBackground(new Color(140, 1, 1));
-        btnEliminar.setForeground(Color.white);
-    }//GEN-LAST:event_btnEliminarMouseExited
-
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        int codigo = Integer.parseInt(this.txtEliminar.getText());
-
-        RegistroManga reg = new RegistroManga();
-
-        if (reg.eliminarManga(codigo)) {
-            JOptionPane.showMessageDialog(null, "Manga eliminado con éxito", "Eliminar Manga", 1);
-        } else {
-            JOptionPane.showMessageDialog(null, "Manga No eliminado", "Eliminar Manga", 0);
-
-        }
-        //código clase
-//        int fila = this.tblVerStock.getSelectedRow();
-//        if (fila<0) {
-//            JOptionPane.showMessageDialog(this, "Seleccione ...");;
-//            this.tblVerStock.requestFocus();
-//            return;
-//        }else{
-//            int codigo = (int) this.tblVerStock.getValueAt(fila, 0);
-//            
-//        }
-    }//GEN-LAST:event_btnEliminarActionPerformed
-
     private void btnVolverMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseEntered
         btnVolver.setBackground(Color.black);
         btnVolver.setForeground(Color.white);
@@ -346,66 +274,55 @@ public class Listar extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnVolverActionPerformed
 
-    private void txtEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEliminarActionPerformed
+    private void jPanel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseDragged
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x - xMouse, y - yMouse);
+    }//GEN-LAST:event_jPanel2MouseDragged
+
+    private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtEliminarActionPerformed
+    }//GEN-LAST:event_jPanel2MouseClicked
 
-    private void txtFiltroMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFiltroMousePressed
-        txtFiltro.setText("");
-        txtEliminar.setText("Ingrese código del producto");
-    }//GEN-LAST:event_txtFiltroMousePressed
+    private void jPanel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MousePressed
+        xMouse = evt.getX();
+        yMouse = evt.getY();
+    }//GEN-LAST:event_jPanel2MousePressed
 
-    private void txtEliminarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEliminarMousePressed
-        txtEliminar.setText("");
-        txtFiltro.setText("Ingrese nombre");
-    }//GEN-LAST:event_txtEliminarMousePressed
+    private void btnMostrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMostrarMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMostrarMouseEntered
 
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+    private void btnMostrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMostrarMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMostrarMouseExited
+
+    private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
+        RegistroManga reg = new RegistroManga();
+        
         int codigo, precio, stock;
         String nombre, editorial, autor;
         int mesesSerial, nroTomo;
         boolean estado;
         String demografia;
-
         DefaultTableModel modelo = (DefaultTableModel) this.tblVerStock.getModel();
         modelo.setRowCount(0);
-        nombre = this.txtFiltro.getText();
 
-        if (nombre.isEmpty()) {
-            ArrayList<Manga> lista = (ArrayList<Manga>) reg.buscarTodos();
-            for (Manga manga : lista) {
-                codigo = manga.getCodigo();
-                precio = manga.getPrecio();
-                stock = manga.getStock();
-                nombre = manga.getNombre();
-                editorial = manga.getEditorial();
-                autor = manga.getAutor();
-                mesesSerial = manga.getMesesSerial();
-                nroTomo = manga.getNroTomo();
-                estado = manga.isEstado();
-                demografia = manga.getDemografia();
-
-                modelo.addRow(new Object[]{codigo, precio, stock, nombre, editorial, autor, mesesSerial, nroTomo, estado, demografia});
-            }
-        } else {
-
-            ArrayList<Manga> lista = (ArrayList<Manga>) reg.buscarPorNombre(nombre);
-            for (Manga manga : lista) {
-
-                codigo = manga.getCodigo();
-                precio = manga.getPrecio();
-                stock = manga.getStock();
-                nombre = manga.getNombre();
-                editorial = manga.getEditorial();
-                autor = manga.getAutor();
-                mesesSerial = manga.getMesesSerial();
-                nroTomo = manga.getNroTomo();
-                estado = manga.isEstado();
-                demografia = manga.getDemografia();
-                modelo.addRow(new Object[]{codigo, precio, stock, nombre, editorial, autor, mesesSerial, nroTomo, estado, demografia});
-            }
+        ArrayList<Manga> lista = (ArrayList<Manga>) reg.buscarTodos();
+        for (Manga manga : lista) {
+            codigo = manga.getCodigo();
+            precio = manga.getPrecio();
+            stock = manga.getStock();
+            nombre = manga.getNombre();
+            editorial = manga.getEditorial();
+            autor = manga.getAutor();
+            mesesSerial = manga.getMesesSerial();
+            nroTomo = manga.getNroTomo();
+            estado = manga.isEstado();
+            demografia = manga.getDemografia();
+            modelo.addRow(new Object[]{codigo, precio, stock, nombre, editorial, autor, mesesSerial, nroTomo, estado, demografia});
         }
-    }//GEN-LAST:event_btnBuscarActionPerformed
+    }//GEN-LAST:event_btnMostrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -424,40 +341,34 @@ public class Listar extends javax.swing.JFrame {
 //                }
 //            }
 //        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(Listar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(ModificarListar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(Listar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(ModificarListar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(Listar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(ModificarListar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(Listar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(ModificarListar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        //</editor-fold>
 //
 //        /* Create and display the form */
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {
-//                new Listar().setVisible(true);
+//                new ModificarListar().setVisible(true);
 //            }
 //        });
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnModificar;
+    private javax.swing.JButton btnMostrar;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable tblVerStock;
-    private javax.swing.JTextField txtEliminar;
-    private javax.swing.JTextField txtFiltro;
     // End of variables declaration//GEN-END:variables
 }
