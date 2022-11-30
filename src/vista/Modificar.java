@@ -1,21 +1,30 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package vista;
+
+import controlador.RegistroManga;
+import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
+import javax.swing.JOptionPane;
+import modelo.Manga;
 
 /**
  *
- * @author kim-s
+ * @author FabianDuran DenisseVenegas
  */
 public class Modificar extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Modificar
-     */
+    int xMouse, yMouse;
+    
     public Modificar() {
         initComponents();
+        setIconImage(getIconImage());
+        this.setLocationRelativeTo(null);
+    }
+    
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/logo.png"));
+        return retValue;
     }
 
     /**
@@ -27,21 +36,533 @@ public class Modificar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        txtNombre = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        txtEditorial = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        txtStock = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        txtAutor = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        txtPrecio = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        txtNroTomo = new javax.swing.JTextField();
+        chkEstado = new javax.swing.JCheckBox();
+        cboDemografia = new javax.swing.JComboBox<>();
+        txtMesesSerial = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        btnSalir = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        btnLimpiar = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel3.setFont(new java.awt.Font("Eras Bold ITC", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("MODIFICAR MANGA");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, -1, -1));
+
+        txtNombre.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        txtNombre.setForeground(new java.awt.Color(51, 51, 51));
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 200, -1));
+
+        jLabel4.setFont(new java.awt.Font("Eras Bold ITC", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel4.setText("NOMBRE:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Eras Bold ITC", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel5.setText("EDITORIAL:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, -1, -1));
+
+        txtEditorial.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        txtEditorial.setForeground(new java.awt.Color(51, 51, 51));
+        txtEditorial.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEditorialKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtEditorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, 200, -1));
+
+        jLabel6.setFont(new java.awt.Font("Eras Bold ITC", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel6.setText("STOCK DISPONIBLE:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, -1, -1));
+
+        txtStock.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        txtStock.setForeground(new java.awt.Color(51, 51, 51));
+        txtStock.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtStockKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 200, -1));
+
+        jLabel7.setFont(new java.awt.Font("Eras Bold ITC", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel7.setText("AUTOR:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, -1));
+
+        txtAutor.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        txtAutor.setForeground(new java.awt.Color(51, 51, 51));
+        txtAutor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAutorKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 200, -1));
+
+        jLabel8.setFont(new java.awt.Font("Eras Bold ITC", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel8.setText("PRECIO:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, -1, -1));
+
+        txtPrecio.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        txtPrecio.setForeground(new java.awt.Color(51, 51, 51));
+        txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPrecioKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrecioKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 280, 200, -1));
+
+        jLabel9.setFont(new java.awt.Font("Eras Bold ITC", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel9.setText("DEMOGRAFÍA:");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, -1, -1));
+
+        txtNroTomo.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        txtNroTomo.setForeground(new java.awt.Color(51, 51, 51));
+        txtNroTomo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNroTomoKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtNroTomo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, 200, -1));
+
+        chkEstado.setFont(new java.awt.Font("Eras Bold ITC", 1, 14)); // NOI18N
+        chkEstado.setForeground(new java.awt.Color(153, 153, 153));
+        chkEstado.setText("FINALIZADO?");
+        chkEstado.setBorder(null);
+        chkEstado.setContentAreaFilled(false);
+        jPanel1.add(chkEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, -1, -1));
+
+        cboDemografia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kodomo", "Josei", "Shojo", "Shonen", "Seinen" }));
+        jPanel1.add(cboDemografia, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, 200, -1));
+
+        txtMesesSerial.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        txtMesesSerial.setForeground(new java.awt.Color(51, 51, 51));
+        txtMesesSerial.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMesesSerialKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtMesesSerial, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, 200, -1));
+
+        jLabel12.setFont(new java.awt.Font("Eras Bold ITC", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel12.setText("MESES SERIALIACIÓN:");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, -1, -1));
+
+        jLabel10.setFont(new java.awt.Font("Eras Bold ITC", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel10.setText("NÚMERO DE TOMO:");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, -1, -1));
+
+        jPanel3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel3MouseDragged(evt);
+            }
+        });
+        jPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel3MousePressed(evt);
+            }
+        });
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnSalir.setFont(new java.awt.Font("Eras Demi ITC", 1, 18)); // NOI18N
+        btnSalir.setText("X");
+        btnSalir.setBorder(null);
+        btnSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSalirMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSalirMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSalirMouseExited(evt);
+            }
+        });
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 0, 30, 30));
+
+        btnVolver.setFont(new java.awt.Font("Eras Demi ITC", 1, 14)); // NOI18N
+        btnVolver.setText("VOLVER");
+        btnVolver.setBorder(null);
+        btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnVolverMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnVolverMouseExited(evt);
+            }
+        });
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 0, 100, 30));
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 30));
+
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnLimpiar.setBackground(new java.awt.Color(140, 1, 1));
+        btnLimpiar.setFont(new java.awt.Font("Eras Bold ITC", 0, 18)); // NOI18N
+        btnLimpiar.setForeground(new java.awt.Color(255, 255, 255));
+        btnLimpiar.setText("LIMPIAR");
+        btnLimpiar.setBorder(null);
+        btnLimpiar.setBorderPainted(false);
+        btnLimpiar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnLimpiarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnLimpiarMouseExited(evt);
+            }
+        });
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, 120, 30));
+
+        btnGuardar.setBackground(new java.awt.Color(140, 1, 1));
+        btnGuardar.setFont(new java.awt.Font("Eras Bold ITC", 0, 18)); // NOI18N
+        btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
+        btnGuardar.setText("GUARDAR");
+        btnGuardar.setBorder(null);
+        btnGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnGuardarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnGuardarMouseExited(evt);
+            }
+        });
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 410, 120, 30));
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/pngwing.com.png"))); // NOI18N
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 280, 380));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Ellipse 209.png"))); // NOI18N
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 330, -1, 120));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 0, 280, 450));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Union (1).png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean mayusculas = key >= 65 && key <= 90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean espacio = key == 32;
+
+        if (!(minusculas || mayusculas || espacio)) {
+            evt.consume();
+        }
+        if (txtNombre.getText().length() >= 20) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtEditorialKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEditorialKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean mayusculas = key >= 65 && key <= 90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean espacio = key == 32;
+
+        if (!(minusculas || mayusculas || espacio)) {
+            evt.consume();
+        }
+        if (txtEditorial.getText().length() >= 20) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtEditorialKeyTyped
+
+    private void txtStockKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtStockKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
+        }
+        if (txtStock.getText().length() >= 3) {
+            evt.consume();
+        }
+        if (txtStock.getText().trim().length() == 10) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtStockKeyTyped
+
+    private void txtAutorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAutorKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean mayusculas = key >= 65 && key <= 90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean espacio = key == 32;
+
+        if (!(minusculas || mayusculas || espacio)) {
+            evt.consume();
+        }
+        if (txtAutor.getText().length() >= 20) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtAutorKeyTyped
+
+    private void txtPrecioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyReleased
+
+    }//GEN-LAST:event_txtPrecioKeyReleased
+
+    private void txtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
+        }
+        if (txtPrecio.getText().length() >= 3) {
+            evt.consume();
+        }
+        if (txtPrecio.getText().trim().length() == 10) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPrecioKeyTyped
+
+    private void txtNroTomoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNroTomoKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
+        }
+        if (txtNroTomo.getText().length() >= 3) {
+            evt.consume();
+        }
+        if (txtNroTomo.getText().trim().length() == 10) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNroTomoKeyTyped
+
+    private void txtMesesSerialKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMesesSerialKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
+        }
+        if (txtMesesSerial.getText().length() >= 3) {
+            evt.consume();
+        }
+        if (txtMesesSerial.getText().trim().length() == 10) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtMesesSerialKeyTyped
+
+    private void btnSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_btnSalirMouseClicked
+
+    private void btnSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseEntered
+        btnSalir.setBackground(Color.red);
+    }//GEN-LAST:event_btnSalirMouseEntered
+
+    private void btnSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseExited
+        btnSalir.setBackground(Color.gray);
+    }//GEN-LAST:event_btnSalirMouseExited
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnVolverMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseEntered
+        btnVolver.setBackground(Color.black);
+        btnVolver.setForeground(Color.white);
+    }//GEN-LAST:event_btnVolverMouseEntered
+
+    private void btnVolverMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseExited
+        btnVolver.setBackground(Color.gray);
+        btnVolver.setForeground(Color.black);
+    }//GEN-LAST:event_btnVolverMouseExited
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void jPanel3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseDragged
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x - xMouse, y - yMouse);
+    }//GEN-LAST:event_jPanel3MouseDragged
+
+    private void jPanel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MousePressed
+        xMouse = evt.getX();
+        yMouse = evt.getY();
+    }//GEN-LAST:event_jPanel3MousePressed
+
+    private void btnLimpiarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarMouseEntered
+        btnLimpiar.setBackground(Color.gray);
+        btnLimpiar.setForeground(Color.black);
+    }//GEN-LAST:event_btnLimpiarMouseEntered
+
+    private void btnLimpiarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarMouseExited
+        btnLimpiar.setBackground(new Color(140, 1, 1));
+        btnLimpiar.setForeground(Color.white);
+    }//GEN-LAST:event_btnLimpiarMouseExited
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        txtNombre.setText("");
+        txtAutor.setText("");
+        txtEditorial.setText("");
+        txtPrecio.setText("");
+        txtStock.setText("");
+        txtMesesSerial.setText("");
+        txtNroTomo.setText("");
+        cboDemografia.setSelectedItem("Kodomo");
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnGuardarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseEntered
+        btnGuardar.setBackground(Color.gray);
+        btnGuardar.setForeground(Color.black);
+    }//GEN-LAST:event_btnGuardarMouseEntered
+
+    private void btnGuardarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseExited
+        btnGuardar.setBackground(new Color(140, 1, 1));
+        btnGuardar.setForeground(Color.white);
+    }//GEN-LAST:event_btnGuardarMouseExited
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+
+        int codigo, precio, stock, nroTomo, mesesSerial;
+        String nombre, autor, editorial, demografia;
+        boolean estado;
+
+        //validaciones
+        nombre = this.txtNombre.getText();
+        if (nombre.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese Nombre", "VALIDACIÓN", JOptionPane.WARNING_MESSAGE);
+            this.txtNombre.requestFocus();
+            return;
+        }
+
+        autor = this.txtAutor.getText();
+        if (autor.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese Autor", "VALIDACIÓN", JOptionPane.WARNING_MESSAGE);
+            this.txtAutor.requestFocus();
+            return;
+        }
+
+        editorial = this.txtEditorial.getText();
+        if (editorial.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese Editorial", "VALIDACIÓN", JOptionPane.WARNING_MESSAGE);
+            this.txtEditorial.requestFocus();
+            return;
+        }
+
+        try {
+            precio = Integer.parseInt(this.txtPrecio.getText());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Precio debe ser numérico", "VALIDACIÓN", JOptionPane.WARNING_MESSAGE);
+            this.txtPrecio.requestFocus();
+            return;
+        }
+
+        try {
+            stock = Integer.parseInt(this.txtStock.getText());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Stock debe ser numérico", "VALIDACIÓN", JOptionPane.WARNING_MESSAGE);
+            this.txtStock.requestFocus();
+            return;
+        }
+
+        try {
+            nroTomo = Integer.parseInt(this.txtNroTomo.getText());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ingrese solo el número del tomo", "VALIDACIÓN", JOptionPane.WARNING_MESSAGE);
+            this.txtNroTomo.requestFocus();
+            return;
+        }
+
+        try {
+            mesesSerial = Integer.parseInt(this.txtMesesSerial.getText());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ingrese cantidad de meses en números", "VALIDACIÓN", JOptionPane.WARNING_MESSAGE);
+            this.txtMesesSerial.requestFocus();
+            return;
+        }
+
+        demografia = this.cboDemografia.getSelectedItem().toString();
+
+        estado = this.chkEstado.isSelected();
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +600,33 @@ public class Modificar extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnSalir;
+    private javax.swing.JButton btnVolver;
+    private javax.swing.JComboBox<String> cboDemografia;
+    private javax.swing.JCheckBox chkEstado;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JTextField txtAutor;
+    private javax.swing.JTextField txtEditorial;
+    private javax.swing.JTextField txtMesesSerial;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtNroTomo;
+    private javax.swing.JTextField txtPrecio;
+    private javax.swing.JTextField txtStock;
     // End of variables declaration//GEN-END:variables
 }

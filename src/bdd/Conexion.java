@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 /**
  *
- * @author denisse
+ * @author FabianDuran DenisseVenegas
  */
 public class Conexion {
     public Connection objetenerConexion(){

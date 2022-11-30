@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package vista;
 
 import java.awt.Color;
@@ -14,22 +9,23 @@ import controlador.RegistroManga;
 
 /**
  *
- * @author denisse
+ * @author FabianDuran DenisseVenegas
  */
 public class Agregar extends javax.swing.JFrame {
 
     int xMouse, yMouse;
-    
+
     public Agregar() {
         initComponents();
         setIconImage(getIconImage());
+        this.setLocationRelativeTo(null);
     }
-    
+
     @Override
     public Image getIconImage() {
         Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/logo.png"));
         return retValue;
-    } 
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -55,10 +51,9 @@ public class Agregar extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         txtNroTomo = new javax.swing.JTextField();
         chkEstado = new javax.swing.JCheckBox();
+        cboDemografia = new javax.swing.JComboBox<>();
         txtMesesSerial = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        listDemografia = new javax.swing.JList<>();
         jLabel10 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         btnSalir = new javax.swing.JButton();
@@ -85,6 +80,11 @@ public class Agregar extends javax.swing.JFrame {
 
         txtNombre.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtNombre.setForeground(new java.awt.Color(51, 51, 51));
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 200, -1));
 
         jLabel4.setFont(new java.awt.Font("Eras Bold ITC", 1, 14)); // NOI18N
@@ -99,6 +99,11 @@ public class Agregar extends javax.swing.JFrame {
 
         txtEditorial.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtEditorial.setForeground(new java.awt.Color(51, 51, 51));
+        txtEditorial.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEditorialKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtEditorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, 200, -1));
 
         jLabel6.setFont(new java.awt.Font("Eras Bold ITC", 1, 14)); // NOI18N
@@ -108,6 +113,11 @@ public class Agregar extends javax.swing.JFrame {
 
         txtStock.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtStock.setForeground(new java.awt.Color(51, 51, 51));
+        txtStock.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtStockKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 200, -1));
 
         jLabel7.setFont(new java.awt.Font("Eras Bold ITC", 1, 14)); // NOI18N
@@ -117,6 +127,11 @@ public class Agregar extends javax.swing.JFrame {
 
         txtAutor.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtAutor.setForeground(new java.awt.Color(51, 51, 51));
+        txtAutor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAutorKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 200, -1));
 
         jLabel8.setFont(new java.awt.Font("Eras Bold ITC", 1, 14)); // NOI18N
@@ -126,6 +141,14 @@ public class Agregar extends javax.swing.JFrame {
 
         txtPrecio.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtPrecio.setForeground(new java.awt.Color(51, 51, 51));
+        txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPrecioKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrecioKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 280, 200, -1));
 
         jLabel9.setFont(new java.awt.Font("Eras Bold ITC", 1, 14)); // NOI18N
@@ -135,6 +158,11 @@ public class Agregar extends javax.swing.JFrame {
 
         txtNroTomo.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtNroTomo.setForeground(new java.awt.Color(51, 51, 51));
+        txtNroTomo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNroTomoKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtNroTomo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, 200, -1));
 
         chkEstado.setFont(new java.awt.Font("Eras Bold ITC", 1, 14)); // NOI18N
@@ -144,27 +172,22 @@ public class Agregar extends javax.swing.JFrame {
         chkEstado.setContentAreaFilled(false);
         jPanel1.add(chkEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, -1, -1));
 
+        cboDemografia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kodomo", "Josei", "Shojo", "Shonen", "Seinen" }));
+        jPanel1.add(cboDemografia, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, 200, -1));
+
         txtMesesSerial.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtMesesSerial.setForeground(new java.awt.Color(51, 51, 51));
+        txtMesesSerial.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMesesSerialKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtMesesSerial, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, 200, -1));
 
         jLabel12.setFont(new java.awt.Font("Eras Bold ITC", 1, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(153, 153, 153));
         jLabel12.setText("MESES SERIALIACIÓN:");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, -1, -1));
-
-        jScrollPane1.setForeground(new java.awt.Color(51, 51, 51));
-
-        listDemografia.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        listDemografia.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Kodomo", "Josei", "Shojo", "Shonen", "Seinen" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        listDemografia.setVisibleRowCount(3);
-        jScrollPane1.setViewportView(listDemografia);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 360, 200, 60));
 
         jLabel10.setFont(new java.awt.Font("Eras Bold ITC", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(153, 153, 153));
@@ -232,6 +255,7 @@ public class Agregar extends javax.swing.JFrame {
         btnLimpiar.setForeground(new java.awt.Color(255, 255, 255));
         btnLimpiar.setText("LIMPIAR");
         btnLimpiar.setBorder(null);
+        btnLimpiar.setBorderPainted(false);
         btnLimpiar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnLimpiarMouseEntered(evt);
@@ -293,73 +317,75 @@ public class Agregar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        
+
         int codigo, precio, stock, nroTomo, mesesSerial;
-        String nombre, autor,  editorial, demografia;
+        String nombre, autor, editorial, demografia;
         boolean estado;
-        
+
         //validaciones
         nombre = this.txtNombre.getText();
-        if(nombre.isEmpty()){
-            JOptionPane.showMessageDialog(this, "Ingrese Nombre", "Validación", JOptionPane.WARNING_MESSAGE);
+        if (nombre.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese Nombre", "VALIDACIÓN", JOptionPane.WARNING_MESSAGE);
             this.txtNombre.requestFocus();
             return;
         }
-        
+
         autor = this.txtAutor.getText();
-        if(autor.isEmpty()){
-            JOptionPane.showMessageDialog(this, "Ingrese Autor", "Validación", JOptionPane.WARNING_MESSAGE);
+        if (autor.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese Autor", "VALIDACIÓN", JOptionPane.WARNING_MESSAGE);
             this.txtAutor.requestFocus();
             return;
         }
-        
+
         editorial = this.txtEditorial.getText();
-        if(editorial.isEmpty()){
-            JOptionPane.showMessageDialog(this, "Ingrese Editorial", "Validación", JOptionPane.WARNING_MESSAGE);
+        if (editorial.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese Editorial", "VALIDACIÓN", JOptionPane.WARNING_MESSAGE);
             this.txtEditorial.requestFocus();
             return;
         }
-        
-        try{
+
+        try {
             precio = Integer.parseInt(this.txtPrecio.getText());
-        }catch(Exception e){
-             JOptionPane.showMessageDialog(this, "Precio debe ser numérico", "Validación", JOptionPane.WARNING_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Precio debe ser numérico", "VALIDACIÓN", JOptionPane.WARNING_MESSAGE);
             this.txtPrecio.requestFocus();
             return;
         }
-        
-        try{
+
+        try {
             stock = Integer.parseInt(this.txtStock.getText());
-        }catch(Exception e){
-             JOptionPane.showMessageDialog(this, "Stock debe ser numérico", "Validación", JOptionPane.WARNING_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Stock debe ser numérico", "VALIDACIÓN", JOptionPane.WARNING_MESSAGE);
             this.txtStock.requestFocus();
             return;
         }
-        
-        try{
+
+        try {
             nroTomo = Integer.parseInt(this.txtNroTomo.getText());
-        }catch(Exception e){
-             JOptionPane.showMessageDialog(this, "Ingrese solo el número del tomo", "Validación", JOptionPane.WARNING_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ingrese solo el número del tomo", "VALIDACIÓN", JOptionPane.WARNING_MESSAGE);
             this.txtNroTomo.requestFocus();
             return;
         }
-        
-        try{
+
+        try {
             mesesSerial = Integer.parseInt(this.txtMesesSerial.getText());
-        }catch(Exception e){
-             JOptionPane.showMessageDialog(this, "Ingrese cantidad de meses en números", "Validación", JOptionPane.WARNING_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ingrese cantidad de meses en números", "VALIDACIÓN", JOptionPane.WARNING_MESSAGE);
             this.txtMesesSerial.requestFocus();
             return;
         }
-        demografia = this.listDemografia.getSelectedValue();
-        
+
+        demografia = this.cboDemografia.getSelectedItem().toString();
+
         estado = this.chkEstado.isSelected();
-        
+
         Manga newManga = new Manga(0, precio, stock, nroTomo, mesesSerial, nombre, autor, editorial, demografia, estado);
         RegistroManga reg = new RegistroManga();
+
         if (reg.agregarManga(newManga)) {
-            JOptionPane.showMessageDialog(this, "Manga agregado exitosamente", "Información", JOptionPane.INFORMATION_MESSAGE);
-        }else{
+            JOptionPane.showMessageDialog(this, "Manga agregado exitosamente", "INFORMACIÓN", JOptionPane.INFORMATION_MESSAGE);
+        } else {
             JOptionPane.showMessageDialog(this, "Error al agregar el manga", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
@@ -397,7 +423,7 @@ public class Agregar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarMouseEntered
 
     private void btnAgregarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseExited
-        btnAgregar.setBackground(new Color(140,1,1));
+        btnAgregar.setBackground(new Color(140, 1, 1));
         btnAgregar.setForeground(Color.white);
     }//GEN-LAST:event_btnAgregarMouseExited
 
@@ -421,7 +447,7 @@ public class Agregar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimpiarMouseEntered
 
     private void btnLimpiarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarMouseExited
-        btnLimpiar.setBackground(new Color(140,1,1));
+        btnLimpiar.setBackground(new Color(140, 1, 1));
         btnLimpiar.setForeground(Color.white);
     }//GEN-LAST:event_btnLimpiarMouseExited
 
@@ -433,8 +459,122 @@ public class Agregar extends javax.swing.JFrame {
         txtStock.setText("");
         txtMesesSerial.setText("");
         txtNroTomo.setText("");
-        
+        cboDemografia.setSelectedItem("Kodomo");
+
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean mayusculas = key >= 65 && key <= 90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean espacio = key == 32;
+
+        if (!(minusculas || mayusculas || espacio)) {
+            evt.consume();
+        }
+        if (txtNombre.getText().length() >= 20) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtEditorialKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEditorialKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean mayusculas = key >= 65 && key <= 90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean espacio = key == 32;
+
+        if (!(minusculas || mayusculas || espacio)) {
+            evt.consume();
+        }
+        if (txtEditorial.getText().length() >= 20) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtEditorialKeyTyped
+
+    private void txtAutorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAutorKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean mayusculas = key >= 65 && key <= 90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean espacio = key == 32;
+
+        if (!(minusculas || mayusculas || espacio)) {
+            evt.consume();
+        }
+        if (txtAutor.getText().length() >= 20) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtAutorKeyTyped
+
+    private void txtNroTomoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNroTomoKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
+        }
+        if (txtNroTomo.getText().length() >= 3) {
+            evt.consume();
+        }
+        if (txtNroTomo.getText().trim().length() == 10) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNroTomoKeyTyped
+
+    private void txtStockKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtStockKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
+        }
+        if (txtStock.getText().length() >= 3) {
+            evt.consume();
+        }
+        if (txtStock.getText().trim().length() == 10) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtStockKeyTyped
+
+    private void txtPrecioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyReleased
+
+    }//GEN-LAST:event_txtPrecioKeyReleased
+
+    private void txtMesesSerialKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMesesSerialKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
+        }
+        if (txtMesesSerial.getText().length() >= 3) {
+            evt.consume();
+        }
+        if (txtMesesSerial.getText().trim().length() == 10) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtMesesSerialKeyTyped
+
+    private void txtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
+        }
+        if (txtPrecio.getText().length() >= 6) {
+            evt.consume();
+        }
+        if (txtPrecio.getText().trim().length() == 10) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPrecioKeyTyped
 
     /**
      * @param args the command line arguments
@@ -476,6 +616,7 @@ public class Agregar extends javax.swing.JFrame {
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnVolver;
+    private javax.swing.JComboBox<String> cboDemografia;
     private javax.swing.JCheckBox chkEstado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -492,8 +633,6 @@ public class Agregar extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JList<String> listDemografia;
     private javax.swing.JTextField txtAutor;
     private javax.swing.JTextField txtEditorial;
     private javax.swing.JTextField txtMesesSerial;

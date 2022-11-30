@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package vista;
 
 import java.awt.Color;
@@ -11,18 +6,23 @@ import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import modelo.Manga;
 import controlador.RegistroManga;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author denisse
+ * @author FabianDuran DenisseVenegas
  */
 public class Listar extends javax.swing.JFrame {
+    
+    RegistroManga reg = new RegistroManga();
 
     int xMouse, yMouse;
     
     public Listar() {
         initComponents();
         setIconImage(getIconImage());
+        this.setLocationRelativeTo(null);
     }
     
     @Override
@@ -95,7 +95,7 @@ public class Listar extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblVerStock);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 600, 250));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 700, 250));
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, 290, -1));
@@ -112,6 +112,11 @@ public class Listar extends javax.swing.JFrame {
                 btnBuscarMouseExited(evt);
             }
         });
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 50, 130, 30));
 
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
@@ -123,8 +128,13 @@ public class Listar extends javax.swing.JFrame {
         txtFiltro.setBackground(new java.awt.Color(0, 0, 0));
         txtFiltro.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtFiltro.setForeground(new java.awt.Color(204, 204, 204));
-        txtFiltro.setText("Ingrese nombre, autor o demografía");
+        txtFiltro.setText("Ingrese nombre");
         txtFiltro.setBorder(null);
+        txtFiltro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtFiltroMousePressed(evt);
+            }
+        });
         jPanel1.add(txtFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 290, 30));
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
@@ -220,8 +230,18 @@ public class Listar extends javax.swing.JFrame {
         txtEliminar.setBackground(new java.awt.Color(0, 0, 0));
         txtEliminar.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtEliminar.setForeground(new java.awt.Color(204, 204, 204));
-        txtEliminar.setText("Ingrese nombre, autor o demografía");
+        txtEliminar.setText("Ingrese código del producto");
         txtEliminar.setBorder(null);
+        txtEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtEliminarMousePressed(evt);
+            }
+        });
+        txtEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEliminarActionPerformed(evt);
+            }
+        });
         jPanel1.add(txtEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 380, 290, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -301,6 +321,16 @@ public class Listar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Manga No eliminado", "Eliminar Manga", 0);
 
         }
+        //código clase
+//        int fila = this.tblVerStock.getSelectedRow();
+//        if (fila<0) {
+//            JOptionPane.showMessageDialog(this, "Seleccione ...");;
+//            this.tblVerStock.requestFocus();
+//            return;
+//        }else{
+//            int codigo = (int) this.tblVerStock.getValueAt(fila, 0);
+//            
+//        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnVolverMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseEntered
@@ -316,6 +346,65 @@ public class Listar extends javax.swing.JFrame {
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void txtEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEliminarActionPerformed
+
+    private void txtFiltroMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFiltroMousePressed
+        txtFiltro.setText("");
+        txtEliminar.setText("Ingrese código del producto");
+    }//GEN-LAST:event_txtFiltroMousePressed
+
+    private void txtEliminarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEliminarMousePressed
+        txtEliminar.setText("");
+        txtFiltro.setText("Ingrese nombre");
+    }//GEN-LAST:event_txtEliminarMousePressed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        int codigo, precio, stock;
+        String nombre, editorial, autor;
+        int mesesSerial, nroTomo;
+        boolean estado;
+        String demografia;
+        
+        DefaultTableModel modelo = (DefaultTableModel) this.tblVerStock.getModel();
+        modelo.setRowCount(0);
+        nombre = this.txtFiltro.getText();
+        
+        if (nombre.isEmpty()) {
+            ArrayList<Manga> lista = (ArrayList<Manga>) reg.buscarTodos();
+            for (Manga manga : lista) {
+                codigo = manga.getCodigo();
+                precio = manga.getPrecio();
+                stock = manga.getStock();
+                nombre = manga.getNombre();
+                editorial = manga.getEditorial();
+                autor = manga.getAutor();
+                mesesSerial = manga.getMesesSerial();
+                nroTomo = manga.getNroTomo();
+                estado = manga.isEstado();
+                demografia = manga.getDemografia();
+
+                modelo.addRow(new Object[]{codigo, precio, stock, nombre, editorial, autor, mesesSerial, nroTomo, estado, demografia});
+            }
+        } else {
+
+            Manga manga = reg.buscarPorNombre(nombre);
+            codigo = manga.getCodigo();
+            precio = manga.getPrecio();
+            stock = manga.getStock();
+            nombre = manga.getNombre();
+            editorial = manga.getEditorial();
+            autor = manga.getAutor();
+            mesesSerial = manga.getMesesSerial();
+            nroTomo = manga.getNroTomo();
+            estado = manga.isEstado();
+            demografia = manga.getDemografia();
+
+            modelo.addRow(new Object[]{codigo, precio, stock, nombre, editorial, autor, mesesSerial, nroTomo, estado, demografia});
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
      * @param args the command line arguments

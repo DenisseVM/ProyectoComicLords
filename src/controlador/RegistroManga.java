@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package controlador;
 
 import bdd.Conexion;
@@ -17,7 +13,7 @@ import modelo.Manga;
 
 /**
  *
- * @author fabi-
+ * @author FabianDuran DenisseVenegas
  */
 public class RegistroManga {
 
@@ -46,7 +42,7 @@ public class RegistroManga {
             return true;
 
         } catch (SQLException e) {
-            System.out.println("Error en la consulta SQL al agregar un manga " + e.getMessage());
+            System.out.println("Error en la consulta SQL al agregar manga " + e.getMessage());
             return false;
         }
     }
@@ -59,11 +55,11 @@ public class RegistroManga {
             Conexion con = new Conexion();
             Connection cnx = con.objetenerConexion();
 
-            String query = "DELETE FROM producto WHERE codigo =?";
+            String query = "DELETE FROM producto WHERE codigo = ?";
             PreparedStatement stmt = cnx.prepareStatement(query);
             stmt.setInt(1, codigo);
 
-            int preg = JOptionPane.showConfirmDialog(null, "¿Esta seguro de que desea eliminar esto?", "Eliminar Producto", 1);
+            int preg = JOptionPane.showConfirmDialog(null, "¿Está seguro de que desea eliminar este producto?", "ELIMINAR PRODUCTO", 1);
 
             if (preg == 0) {
                 stmt.executeUpdate();
@@ -73,7 +69,7 @@ public class RegistroManga {
             }
 
         } catch (HeadlessException | SQLException e) {
-            System.out.println("Error en la consulta SQL a la hora de eliminar producto" + e.getMessage());
+            System.out.println("Error en la consulta SQL al eliminar producto" + e.getMessage());
             flag = false;
         }
         return flag;
@@ -87,7 +83,7 @@ public class RegistroManga {
             Conexion con = new Conexion();
             Connection cnx = con.objetenerConexion();
 
-            String query = "UPDATE producto SET precio = ? WHERE precio =?";
+            String query = "UPDATE producto SET precio = ? WHERE precio = ?";
             PreparedStatement stmt = cnx.prepareStatement(query);
             stmt.setInt(1, newPrecio);
             stmt.setInt(2, precio);
@@ -109,7 +105,7 @@ public class RegistroManga {
             Conexion con = new Conexion();
             Connection cnx = con.objetenerConexion();
 
-            String query = "UPDATE producto SET stock = ? WHERE stock =?";
+            String query = "UPDATE producto SET stock = ? WHERE stock =? ";
             PreparedStatement stmt = cnx.prepareStatement(query);
             stmt.setInt(1, newStock);
             stmt.setInt(2, stock);
@@ -131,7 +127,7 @@ public class RegistroManga {
             Conexion con = new Conexion();
             Connection cnx = con.objetenerConexion();
 
-            String query = "UPDATE producto SET nombre = ? WHERE nombre =?";
+            String query = "UPDATE producto SET nombre = ? WHERE nombre = ?";
             PreparedStatement stmt = cnx.prepareStatement(query);
             stmt.setString(1, newNombre);
             stmt.setString(2, nombre);
@@ -153,7 +149,7 @@ public class RegistroManga {
             Conexion con = new Conexion();
             Connection cnx = con.objetenerConexion();
 
-            String query = "UPDATE producto SET editorial = ? WHERE editorial =?";
+            String query = "UPDATE producto SET editorial = ? WHERE editorial = ?";
             PreparedStatement stmt = cnx.prepareStatement(query);
             stmt.setString(1, newEditorial);
             stmt.setString(2, editorial);
@@ -175,7 +171,7 @@ public class RegistroManga {
             Conexion con = new Conexion();
             Connection cnx = con.objetenerConexion();
 
-            String query = "UPDATE producto SET autor = ? WHERE autor =?";
+            String query = "UPDATE producto SET autor = ? WHERE autor = ?";
             PreparedStatement stmt = cnx.prepareStatement(query);
             stmt.setString(1, newAutor);
             stmt.setString(2, autor);
@@ -197,7 +193,7 @@ public class RegistroManga {
             Conexion con = new Conexion();
             Connection cnx = con.objetenerConexion();
 
-            String query = "UPDATE producto SET mesesSerial = ? WHERE mesesSerial =?";
+            String query = "UPDATE producto SET mesesSerial = ? WHERE mesesSerial = ?";
             PreparedStatement stmt = cnx.prepareStatement(query);
             stmt.setInt(1, newMesesSerial);
             stmt.setInt(2, mesesSerial);
@@ -207,7 +203,7 @@ public class RegistroManga {
             cnx.close();
             return true;
         } catch (HeadlessException | SQLException e) {
-            System.out.println("Error en la consulta SQL al actualizar los meses del manga" + e.getMessage());
+            System.out.println("Error en la consulta SQL al actualizar los meses de serialización del manga" + e.getMessage());
             return false;
         }
     }
@@ -219,7 +215,7 @@ public class RegistroManga {
             Conexion con = new Conexion();
             Connection cnx = con.objetenerConexion();
 
-            String query = "UPDATE producto SET nroTomo = ? WHERE nroTomo =?";
+            String query = "UPDATE producto SET nroTomo = ? WHERE nroTomo = ?";
             PreparedStatement stmt = cnx.prepareStatement(query);
             stmt.setInt(1, newNroTomo);
             stmt.setInt(2, nroTomo);
@@ -229,7 +225,7 @@ public class RegistroManga {
             cnx.close();
             return true;
         } catch (HeadlessException | SQLException e) {
-            System.out.println("Error en la consulta SQL al actualizar el numero del tomo del manga" + e.getMessage());
+            System.out.println("Error en la consulta SQL al actualizar el número de tomo del manga" + e.getMessage());
             return false;
         }
     }
@@ -241,7 +237,7 @@ public class RegistroManga {
             Conexion con = new Conexion();
             Connection cnx = con.objetenerConexion();
 
-            String query = "UPDATE producto SET estado = ? WHERE estado =?";
+            String query = "UPDATE producto SET estado = ? WHERE estado = ?";
             PreparedStatement stmt = cnx.prepareStatement(query);
             stmt.setBoolean(1, newEstado);
             stmt.setBoolean(2, estado);
@@ -263,7 +259,7 @@ public class RegistroManga {
             Conexion con = new Conexion();
             Connection cnx = con.objetenerConexion();
 
-            String query = "UPDATE producto SET demografia = ? WHERE demografia =?";
+            String query = "UPDATE producto SET demografia = ? WHERE demografia = ?";
             PreparedStatement stmt = cnx.prepareStatement(query);
             stmt.setString(1, newDemografia);
             stmt.setString(2, demografia);
@@ -273,7 +269,7 @@ public class RegistroManga {
             cnx.close();
             return true;
         } catch (HeadlessException | SQLException e) {
-            System.out.println("Error en la consulta SQL al actualizar la demografia del manga" + e.getMessage());
+            System.out.println("Error en la consulta SQL al actualizar la demografía del manga" + e.getMessage());
             return false;
         }
     }
@@ -312,7 +308,7 @@ public class RegistroManga {
             cnx.close();
 
         } catch (HeadlessException | SQLException e) {
-            System.out.println("Error en la consulta SQL al consultar por el nombre" + e.getMessage());
+            System.out.println("Error en la consulta SQL al buscar por nombre" + e.getMessage());
         }
         return mg;
 
@@ -352,7 +348,7 @@ public class RegistroManga {
             cnx.close();
 
         } catch (HeadlessException | SQLException e) {
-            System.out.println("Error en la consulta SQL al consultar por el nombre" + e.getMessage());
+            System.out.println("Error en la consulta SQL al buscar por demografía" + e.getMessage());
         }
         return mg;
 
@@ -392,7 +388,7 @@ public class RegistroManga {
             cnx.close();
 
         } catch (HeadlessException | SQLException e) {
-            System.out.println("Error en la consulta SQL al consultar por el autor" + e.getMessage());
+            System.out.println("Error en la consulta SQL al buscar por autor" + e.getMessage());
         }
         return mg;
 
@@ -434,7 +430,7 @@ public class RegistroManga {
             cnx.close();
 
         } catch (HeadlessException | SQLException e) {
-            System.out.println("Error en la consulta SQL al consultar todos los datos" + e.getMessage());
+            System.out.println("Error en la consulta SQL al consultar los datos" + e.getMessage());
         }
         return lista;
 
